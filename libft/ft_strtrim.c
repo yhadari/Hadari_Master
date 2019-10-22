@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 16:16:18 by yhadari           #+#    #+#             */
-/*   Updated: 2019/10/21 22:04:52 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/10/22 18:17:09 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@ char			*ft_strtrim(char const *s1, char const *set)
 	size = (ifend(s1, set) - ifbegi(s1, set));
 	if (size < 0)
 	{
-		ptr = malloc(sizeof(char));
+		ptr = malloc(1);
+		if (!ptr)
+			return (NULL);
 		ptr[0] = '\0';
 		return (ptr);
 	}

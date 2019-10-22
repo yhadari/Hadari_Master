@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 19:14:48 by yhadari           #+#    #+#             */
-/*   Updated: 2019/10/18 17:25:17 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/10/22 18:18:25 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,4 @@ char	*ft_strrchr(const char *s, int c)
 	if (i == -1)
 		return (NULL);
 	return ((char*)s + i);
-
 }
