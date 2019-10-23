@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 19:31:21 by yhadari           #+#    #+#             */
-/*   Updated: 2019/10/22 19:34:52 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/10/23 15:05:49 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_putendl_fd(char *s, int fd)
 {
 	if (!s)
-		return;
+		return ;
 	write(fd, s, ft_strlen(s));
 	write(fd, "\n", 1);
 }
