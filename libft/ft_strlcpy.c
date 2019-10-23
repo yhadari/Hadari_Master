@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 22:23:02 by yhadari           #+#    #+#             */
-/*   Updated: 2019/10/18 22:11:38 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/10/22 23:28:58 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,25 @@ size_t		ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t i;
 
-	if (!dst && !src)
-		return (0);
 	i = 0;
-	while (i < (size - 1) && src[i] != '\0')
+	if (size > 0)
 	{
-		dst[i] = src[i];
-		i++;
+		while (i < (size - 1) && src[i] != '\0')
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
 	}
-	dst[i] = '\0';
 	return (ft_strlen(src));
 }
+/*
+int main()
+{
+	char a[10] = "yassine";
+	char b[] = "hadari";
+	ft_strlcpy(a, b, 0);
+	printf("%s", a);
+	return (0);
+}
+*/
