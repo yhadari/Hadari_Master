@@ -6,23 +6,25 @@
 #    By: yhadari <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 01:03:22 by yhadari           #+#    #+#              #
-#    Updated: 2019/10/19 16:12:29 by yhadari          ###   ########.fr        #
+#    Updated: 2019/10/25 19:09:59 by yhadari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = *.c
+NAME = libft.a
 
-all :
-	@gcc -Wall -Wextra -Werror -c $(NAME) -I. 
-	@ar rc libft.a *.o
-	@ranlib libft.a
+SRC = *.c
 
-bonus : all
+all : $(NAME)
+
+$(NAME) :
+	@gcc -Wall -Wextra -Werror -c $(SRC) -I. 
+	@ar rc $(NAME) *.o
+	@ranlib $(NAME)
 
 clean :
 	@rm -f *.o
 
 fclean : clean
-	@rm -f *.a
+	@rm -f $(NAME)
 
 re : fclean all
