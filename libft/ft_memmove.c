@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 14:59:35 by yhadari           #+#    #+#             */
-/*   Updated: 2019/10/17 23:07:08 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/10/26 00:51:06 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	d1 = (unsigned char*)dst;
 	s1 = (unsigned char*)src;
 	if (!src && !dst)
-		return ("");
+		return (NULL);
 	if (d1 > s1)
 	{
 		while (len--)

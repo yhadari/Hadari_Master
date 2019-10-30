@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 22:39:49 by yhadari           #+#    #+#             */
-/*   Updated: 2019/10/17 16:51:27 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/10/26 00:27:45 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 
 	i = 0;
 	if (!dst && !src)
-		return ("");
+		return (NULL);
 	while (i < n)
 	{
 		*((char*)dst + i) = *((char*)src + i);

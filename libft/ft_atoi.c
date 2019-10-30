@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 15:49:27 by yhadari           #+#    #+#             */
-/*   Updated: 2019/10/25 19:09:19 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/10/25 19:03:01 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int				ft_atoi(const char *str)
 {
-	int	result;
+	int result;
 	int	i;
 	int	j;
 
