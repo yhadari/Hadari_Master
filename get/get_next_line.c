@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 18:26:12 by yhadari           #+#    #+#             */
-/*   Updated: 2019/11/10 10:40:54 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/11/10 12:23:54 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static	void		*ft_memchr(const void *s, int c, size_t n)
 	return (NULL);
 }
 
-size_t				ft_strbn(char *s)
+static	size_t		ft_strbn(char *s)
 {
 	size_t i;
 
@@ -37,31 +37,38 @@ size_t				ft_strbn(char *s)
 	return (i);
 }
 
+static	int			ft_check(char **p, char **line)
+{
+	if (*p)
+	{
+		if (ft_memchr(*p, '\n', ft_strlen(*p)))
+		{
+			*line = ft_substr(*p, 0, ft_strbn(*p));
+			*p = ft_strdup(ft_memchr(*p, '\n', ft_strlen(*p)) + 1);
+			return (1);
+		}
+		*line = ft_strdup(*p);
+		p = NULL;
+	}
+	return (0);
+}
+
 int					get_next_line(int fd, char **line)
 {
 	static	char	*p;
 	char			*buf;
 	int				k;
 
-	buf = malloc((BUFFER_SIZE + 1)*(sizeof(char)));
+	buf = malloc((BUFFER_SIZE + 1) * (sizeof(char)));
 	*line = ft_strdup("");
-	while (p)
-	{
-		if (ft_memchr(p, '\n', ft_strlen(p)))
-		{
-			*line = ft_substr(p, 0, ft_strbn(p));
-			p = ft_strdup(ft_memchr(p, '\n', ft_strlen(p)) + 1);
-			return (1);
-		}
-		*line = ft_strdup(p);
-		p = NULL;
-	}
+	if ((ft_check(&p, &*line)) == 1)
+		return (1);
 	while ((k = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[k] = '\0';
 		if ((p = ft_memchr(buf, '\n', ft_strlen(buf))))
 		{
-			p = ft_strdup(p+1);
+			p = ft_strdup(p + 1);
 			*line = ft_strjoin(*line, ft_substr(buf, 0, ft_strbn(buf)));
 			return (1);
 		}

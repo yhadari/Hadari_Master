@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 18:27:31 by yhadari           #+#    #+#             */
-/*   Updated: 2019/11/09 22:03:58 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/11/10 11:48:35 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <stdio.h>
-# define BUFFER_SIZE 32
 # include <string.h>
 # include <sys/types.h>
 # include <sys/uio.h>
