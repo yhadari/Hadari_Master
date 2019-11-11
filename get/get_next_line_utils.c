@@ -3,26 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: yhadari <yhadari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 18:26:45 by yhadari           #+#    #+#             */
-/*   Updated: 2019/11/06 15:39:29 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/11/12 00:27:47 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char		*ft_strjoin(char const *s1, char const *s2)
+char		*ft_strjoin(char const *s1, char const *s2, int x)
 {
 	char	*ptr;
-	int		size;
 	int		i;
 	int		j;
 
-	if (!s1 || !s2)
-		return (NULL);
-	size = (ft_strlen(s1) + ft_strlen(s2));
-	ptr = malloc(size + 1);
+	if (s1 == NULL)
+		s1 = ft_strdup("");
+	ptr = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!ptr)
 		return (NULL);
 	i = 0;
@@ -33,6 +31,9 @@ char		*ft_strjoin(char const *s1, char const *s2)
 	while (s2[j])
 		ptr[i++] = s2[j++];
 	ptr[i] = '\0';
+	free((char*)s1);
+	if (x == 1)
+		free((char *)s2);
 	return (ptr);
 }
 
@@ -85,6 +86,8 @@ char		*ft_strdup(const char *s1)
 	int		i;
 	char	*ptr;
 
+	if (!s1)
+		return (NULL);
 	i = 0;
 	ptr = malloc(ft_strlen(s1) + 1);
 	if (!ptr)

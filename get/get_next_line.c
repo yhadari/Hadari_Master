@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: yhadari <yhadari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 18:26:12 by yhadari           #+#    #+#             */
-/*   Updated: 2019/11/10 12:23:54 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/11/12 00:37:14 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,20 @@ static	size_t		ft_strbn(char *s)
 
 static	int			ft_check(char **p, char **line)
 {
+	char *l;
+
 	if (*p)
 	{
+		l = *p;
 		if (ft_memchr(*p, '\n', ft_strlen(*p)))
 		{
 			*line = ft_substr(*p, 0, ft_strbn(*p));
 			*p = ft_strdup(ft_memchr(*p, '\n', ft_strlen(*p)) + 1);
+			free(l);
 			return (1);
 		}
 		*line = ft_strdup(*p);
-		p = NULL;
+		free(l);
 	}
 	return (0);
 }
@@ -59,22 +63,25 @@ int					get_next_line(int fd, char **line)
 	char			*buf;
 	int				k;
 
-	buf = malloc((BUFFER_SIZE + 1) * (sizeof(char)));
-	*line = ft_strdup("");
+	*line = NULL;
 	if ((ft_check(&p, &*line)) == 1)
 		return (1);
+	buf = malloc((BUFFER_SIZE + 1) * (sizeof(char)));
+	p = NULL;
 	while ((k = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[k] = '\0';
 		if ((p = ft_memchr(buf, '\n', ft_strlen(buf))))
 		{
 			p = ft_strdup(p + 1);
-			*line = ft_strjoin(*line, ft_substr(buf, 0, ft_strbn(buf)));
+			*line = ft_strjoin(*line, ft_substr(buf, 0, ft_strbn(buf)), 1);
+			free(buf);
 			return (1);
 		}
-		*line = ft_strjoin(*line, buf);
+		*line = ft_strjoin(*line, buf, 0);
 	}
-	if (**line == 0)
-		return (k);
-	return (1);
+	free(buf);
+	if (*line == NULL)
+		*line = ft_strdup("");
+	return (k > 0 ? 1 : k);
 }
