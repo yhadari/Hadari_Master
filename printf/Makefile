@@ -1,0 +1,40 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: yhadari <yhadari@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/11/20 18:09:05 by yhadari           #+#    #+#              #
+#    Updated: 2019/12/05 21:23:29 by yhadari          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = libftprintf.a
+
+SRC = ft_atoi.c ft_putnbr_fd.c ft_isdigit.c ft_putchar_fd.c ft_itoa.c ft_strlen.c \
+	  ft_strdup.c ft_strchr.c ft_printfdd.c ft_zero.c ft_checkptr.c ft_njma.c
+
+O = ft_atoi.o ft_putnbr_fd.o ft_isdigit.o ft_putchar_fd.o ft_itoa.o ft_strlen.o \
+	ft_strdup.o ft_strchr.o ft_printfdd.o ft_zero.o ft_checkptr.o ft_njma.o
+
+all : $(NAME)
+
+$(NAME) :
+	@gcc -g -Wall -Wextra -Werror -c $(SRC)
+	@ar rc $(NAME) $(O)
+	@ranlib $(NAME)
+
+clean : 
+	@rm -f *.o
+
+fclean : clean
+	@rm -f $(NAME)
+
+re : fclean all
+
+test : re
+	@clear
+	@gcc -g -Wall -Wextra -Werror ft_printf.c main.c libftprintf.a
+	@./a.out
+	@make fclean
