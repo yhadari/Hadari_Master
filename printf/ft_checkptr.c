@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 10:20:25 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/03 18:03:14 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/09 22:04:47 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		ft_checkptr(const char *ptr, int *i, va_list *args)
 	(*i)++;
 	while (ptr[j] != '\0')
 	{
-		if (ptr[j] == 'd' && ft_printfdd(ptr, args))
+		if ((ptr[j] == 'd' || ptr[j] == 'i') && ft_printfdd(ptr, args))
 			return (0);
 	}
 	return (0);

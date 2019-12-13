@@ -6,7 +6,7 @@
 /*   By: yhadari <yhadari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 22:29:25 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/05 22:01:20 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/13 22:51:50 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,16 @@ int		ft_checknum1(const char *ptr, long *valg, int *k)
 		ft_point(&ptr[1], valg, str, &nb, &k);
 	if ((ptr[i] > 47 && ptr[i] < 58) || ptr[i] == '-')
 	{
-		if (*valg == 0 && ptr[2] == '.')
-			zero++;
 		if (ptr[i] == '-')
 			nb = -nb;
 		if (ptr[i] == '0' && nb != 0)
 			ft_pointzero(&ptr[i], valg, str, &nb);
 		while (nb-- > ft_strlen(str))
 			ft_putchar_fd(' ', 1);
+		*k = 0;
 		return (0);
 	}
-	if (ptr[i] == '.' && ft_atoi(ptr) == 0 && *valg == 0)
-		zero++;
+	*k = 0;
 	return (0);
 }
 
@@ -71,11 +69,6 @@ int		ft_point(const char *ptr, long *valg, const char *str, int *n, int **k)
 	int nb;
 	int i;
 
-	if (*ptr == '.' && ft_atoi(ptr) == 0 && **k == 1)
-	{
-		if (*valg == 0)
-			zero++;
-	}
 	i = 0;
 	**k = 0;
 	nb = ft_atoi(*ptr == '.' ? ptr + 1 : ptr);
@@ -87,6 +80,17 @@ int		ft_point(const char *ptr, long *valg, const char *str, int *n, int **k)
 		ft_putchar_fd('-', 1);
 		nb++;
 		i = 1;
+	}
+	if (*valg == 0)
+	{
+		if (*n != 0)
+		{
+			if (nb == 0)
+				ft_putchar_fd(' ', 1);
+			else
+				ft_putchar_fd('0', 1);
+		}
+			point++;
 	}
 	while (nb-- > ft_strlen(str))
 		ft_putchar_fd('0', 1);
@@ -115,16 +119,18 @@ int 	ft_printfdd(const char *ptr, va_list *args)
 
 	valg = va_arg(*args, int);
 	k = 0;
-	if (*ptr == '*' || ptr[1] == '*')
+	if (*ptr == '*' || ptr[1] == '*' || (ft_isdigit(ptr) && ptr[2] == '*' && ft_strchr(ptr, '.')))
 		return (ft_njma(ptr, &valg, args));
 	if (*ptr == 'd')
 		ft_putnbr_fd(valg, 1);
 	if (ft_isdigit(ptr) || (*ptr == '.' && ptr[1] != '*') || (*ptr == '-' && checkpoint(ptr + 1)))
 	{
 		ft_checknum1(ptr, &valg, &k);
-		if (zero != 0)
+		if (valg == 0 && ptr[0] != '-' && (ptr[0] == '.' || point != 0))
 			return (1);
-		ft_putnbr_fd(valg, 1);
+		if (valg != 0 || (valg == 0 && ft_strchr(ptr, '.') && ft_atoi(ptr) > ft_atoi(ft_strchr(ptr, '.'))) ||
+				(valg == 0 && !ft_strchr(ptr, '.')))
+			ft_putnbr_fd(valg, 1);
 		if (k != 0)
 			while (k--)
 				ft_putchar_fd(' ', 1);

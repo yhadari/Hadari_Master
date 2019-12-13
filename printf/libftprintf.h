@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: yhadari <yhadari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 15:26:34 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/05 21:57:10 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/12 16:37:56 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 
 int		count;
 int		zero;
+int		point;
+int		ft_printf(const char *ptr, ...);
 int		ft_checknum1(const char *ptr, long *valg, int *k);
 void	ft_putnbr_fd(long n, int fd);
 void	ft_putchar_fd(char c, int fd);
@@ -37,7 +39,9 @@ int     ft_checkptr(const char *ptr, int *i, va_list *args);
 int     ft_printfdd(const char *ptr, va_list *args);
 int		ft_zero(long *valg, const char *str, int *n, int *i, int *nb);
 int     ft_njma(const char *ptr, long *valg, va_list *args);
-char    *ft_concat(char c, char *ptr, const char *a);
-char    *ft_join(char *c, const char *ptr);
-
+char    *ft_concat(char c, char *ptr, const char *a, int k);
+int     ft_njma1(char *a, const char *ptr, long *valg, int z);
+int     ft_njma2(const char *ptr, long *valg, int z);
+int     ft_njma3(char *a, const char *ptr, int z, long *valg);
+char    *ft_concat1(char c, char *ptr, const char *a);
 #endif
