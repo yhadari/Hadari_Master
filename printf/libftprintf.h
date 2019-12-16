@@ -6,7 +6,7 @@
 /*   By: yhadari <yhadari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 15:26:34 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/12 16:37:56 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/16 15:08:45 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <string.h>
 
 int		count;
-int		zero;
 int		point;
 int		ft_printf(const char *ptr, ...);
 int		ft_checknum1(const char *ptr, long *valg, int *k);
@@ -44,4 +43,9 @@ int     ft_njma1(char *a, const char *ptr, long *valg, int z);
 int     ft_njma2(const char *ptr, long *valg, int z);
 int     ft_njma3(char *a, const char *ptr, int z, long *valg);
 char    *ft_concat1(char c, char *ptr, const char *a);
+int     ft_mzero(const char *ptr, long *valg, va_list *args, int *k);
+char    *ft_con(char a, char *ptr);
+char    *ft_join(char *a, char *b, char c);
+char    *ft_concat2(char c, char *ptr);
+int     ft_njma10(const char *ptr, long *valg, va_list *args);
 #endif

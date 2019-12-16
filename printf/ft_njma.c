@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 17:11:42 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/13 22:46:11 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/16 15:23:24 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,14 @@ int		ft_njma(const char *ptr, long *valg, va_list *args)
 	if (*ptr == '*' && *(ptr + 1) == 'd')
 		c = ft_itoa(z);
 	if ((*ptr == '-' || *ptr == '0' || *ptr == '.' || (*ptr == '*' && *(ptr + 2) != '*') ||
-			(ft_isdigit(ptr) && ptr[2] == '*' && ft_strchr(ptr, '.'))) && ptr[1] != 'd')
+				(ft_isdigit(ptr) && ptr[2] == '*' && ft_strchr(ptr, '.'))) && ptr[1] != 'd')
 	{
 		if (!(ft_isdigit(ptr) && ptr[2] == '*') && ft_njma1((char*)a, ptr, valg, z))
 			return (1);
 		if (ft_isdigit(ptr) && ptr[2] == '*')
 			k = 0;
 		c = ft_concat(*ptr, ft_itoa(z), a, k);
-		k = 1;
+		k = 1;	
 	}
 	if ((*ptr == '*' && *(ptr + 2) == '*'))
 	{

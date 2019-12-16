@@ -6,7 +6,7 @@
 /*   By: yhadari <yhadari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 15:25:56 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/13 14:07:12 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/15 23:06:26 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int		ft_printf(const char *ptr, ...)
 			ft_putchar_fd(ptr[i], 1);
 			i++;
 		}
-		zero = 0;
 		ft_checkptr(ptr + i + 1, &i, &args);
 		i++;
 	}

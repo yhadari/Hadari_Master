@@ -6,7 +6,7 @@
 /*   By: yhadari <yhadari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 22:29:25 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/13 22:51:50 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/16 15:21:00 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,11 @@ int 	ft_printfdd(const char *ptr, va_list *args)
 
 	valg = va_arg(*args, int);
 	k = 0;
+	if ( ft_strchr(ptr, '*') && *(ft_strchr(ptr, '*') + 1) == 'd' && ft_atoi(ptr) != 0 &&
+			ft_strchr(ptr, '.'))
+		return (ft_njma10(ptr, &valg, args));
+	if ((*ptr == '-' || *ptr == '0') && ptr[1] == '*' && ptr[2] == '.' && ptr[3] == '*')
+		return (ft_mzero(ptr, &valg, args, &k));
 	if (*ptr == '*' || ptr[1] == '*' || (ft_isdigit(ptr) && ptr[2] == '*' && ft_strchr(ptr, '.')))
 		return (ft_njma(ptr, &valg, args));
 	if (*ptr == 'd')
