@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 17:11:42 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/16 15:23:24 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/17 00:00:23 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*ft_concat1(char c, char *ptr, const char *a)
 {
-	char *p;
-	int i;
-	int j;
+	char	*p;
+	int		i;
+	int		j;
 
 	j = 0;
 	i = ft_strlen(ptr);
@@ -29,11 +29,11 @@ char	*ft_concat1(char c, char *ptr, const char *a)
 	return (p);
 }
 
-char    *ft_concat(char c, char *ptr, const char *a, int k)
+char	*ft_concat(char c, char *ptr, const char *a, int k)
 {
-	char *p;
-	int i;
-	int j;
+	char	*p;
+	int		i;
+	int		j;
 
 	if (k == 0)
 		return (ft_concat1(c, ptr, a));
@@ -55,83 +55,76 @@ char    *ft_concat(char c, char *ptr, const char *a, int k)
 	return (p);
 }
 
-char    *ft_join(char *a, char *b, char c)
+int		ft_1njma(const char *ptr, const char *(*arr)[2], int (*arr1)[3],
+		long *valg)
 {
-	char *p;
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-	i = (ft_strlen(a) + ft_strlen(b) + 1);
-	if (*b == '-')
-		i = (ft_strlen(a) + 1);
-	p = malloc(i + 1);
-	while(*a && i--)
-		p[j++] = *a++;
-	if (*b != '-')
+	if (ft_isdigit(ptr) && ptr[2] == '*' && ft_strchr(ptr, '.'))
+		(*arr)[0] = ".";
+	if ((*ptr == '*' && *(ptr + 2) == '*'))
+		(*arr1)[1] = *valg;
+	if (*ptr == '*' && *(ptr + 1) == 'd')
+		(*arr)[1] = ft_itoa((*arr1)[0]);
+	if ((*ptr == '-' || *ptr == '0' || *ptr == '.' ||
+				(*ptr == '*' && *(ptr + 2) != '*') ||
+				(ft_isdigit(ptr) && ptr[2] == '*' && ft_strchr(ptr, '.'))) &&
+			ptr[1] != 'd')
 	{
-		p[j++] = c;
-		while (*b && i--)
-			p[j++] = *b++;
+		if (!(ft_isdigit(ptr) && ptr[2] == '*') &&
+				ft_njma1((char*)(*arr)[0], ptr, valg, (*arr1)[0]))
+			return (1);
+		if (ft_isdigit(ptr) && ptr[2] == '*')
+			(*arr1)[2] = 0;
+		(*arr)[1] = ft_concat(*ptr, ft_itoa((*arr1)[0]), (*arr)[0], (*arr1)[2]);
+		(*arr1)[2] = 1;
 	}
-	p[j] = '\0';
-	return (p);
+	return (0);
+}
+
+int		ft_2njma(const char *ptr, const char *(*arr)[2], int (*arr1)[3],
+		long *valg)
+{
+	if (ft_isdigit((*arr)[1]) || *((*arr)[1]) == '.' || (*((*arr)[1]) == '-' &&
+				ft_strchr(((*arr)[1] + 1), '.')))
+	{
+		ft_checknum1((*arr)[1], valg, &(*arr1)[2]);
+		if ((*valg == 0 && (*arr1)[0] >= 0 && (ptr[2] == '.' ||
+				(ptr[2] == '*' && ptr[0] != '*') ||
+				(ptr[0] == '.' && ptr[1] == '*'))) ||
+				(*valg == 0 && (*arr1)[1] >= 0 && (*ptr == '*' &&
+				*(ptr + 2) == '*')))
+			return (1);
+		ft_putnbr_fd(*valg, 1);
+		while ((*arr1)[2]--)
+			ft_putchar_fd(' ', 1);
+	}
+	if (*((*arr)[1]) == '-' && !ft_strchr(((*arr)[1] + 1), '.'))
+	{
+		ft_putnbr_fd(*valg, 1);
+		ft_checknum1((*arr)[1], valg, &(*arr1)[2]);
+	}
+	return (1);
 }
 
 int		ft_njma(const char *ptr, long *valg, va_list *args)
 {
-	const char *c;
-	int z;
-	int z1;
-	int k;
-	const char *a;
+	const char	*arr[2];
+	int			arr1[3];
 
-	z1 = 0;
-	a = NULL;
+	arr1[1] = 0;
+	arr[0] = NULL;
 	if (*ptr == '*')
-		a = (ptr + 1);
+		arr[0] = (ptr + 1);
 	if (*(ptr + 1) == '*' && *(ptr + 2) != 'd')
-		a = (ptr + 2);
-	z = *valg;
-	k = 1;
+		arr[0] = (ptr + 2);
+	arr1[0] = *valg;
+	arr1[2] = 1;
 	*valg = va_arg(*args, int);
-	if (ft_isdigit(ptr) && ptr[2] == '*' && ft_strchr(ptr, '.'))
-		a = ".";
-	if ((*ptr == '*' && *(ptr + 2) == '*'))
-		z1 = *valg;
-	if (*ptr == '*' && *(ptr + 1) == 'd')
-		c = ft_itoa(z);
-	if ((*ptr == '-' || *ptr == '0' || *ptr == '.' || (*ptr == '*' && *(ptr + 2) != '*') ||
-				(ft_isdigit(ptr) && ptr[2] == '*' && ft_strchr(ptr, '.'))) && ptr[1] != 'd')
-	{
-		if (!(ft_isdigit(ptr) && ptr[2] == '*') && ft_njma1((char*)a, ptr, valg, z))
-			return (1);
-		if (ft_isdigit(ptr) && ptr[2] == '*')
-			k = 0;
-		c = ft_concat(*ptr, ft_itoa(z), a, k);
-		k = 1;	
-	}
+	if (ft_1njma(ptr, &arr, &arr1, valg))
+		return (1);
 	if ((*ptr == '*' && *(ptr + 2) == '*'))
 	{
-		c = ft_join(ft_itoa(z), ft_itoa((int)z1), *(ptr + 1));
+		arr[1] = ft_join(ft_itoa(arr1[0]), ft_itoa((int)arr1[1]), *(ptr + 1));
 		*valg = va_arg(*args, int);
 	}
-	if (ft_isdigit(c) || *c == '.' || (*c == '-' && checkpoint(c + 1)))
-	{
-		ft_checknum1(c, valg, &k);
-		if ((*valg == 0 && z >= 0 &&
-					(ptr[2] == '.' || (ptr[2] == '*' && ptr[0] != '*') || (ptr[0] == '.' && ptr[1] == '*'))) ||
-				(*valg == 0 && z1 >= 0 && (*ptr == '*' && *(ptr + 2) == '*')))
-			return (1);
-		ft_putnbr_fd(*valg, 1);
-		while (k--)
-			ft_putchar_fd(' ', 1);
-	}
-	if (*c == '-' && !checkpoint(c + 1))
-	{
-		ft_putnbr_fd(*valg, 1);
-		ft_checknum1(c, valg, &k);
-	}
-	return (1);
+	return (ft_2njma(ptr, &arr, &arr1, valg));
 }

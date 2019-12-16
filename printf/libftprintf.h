@@ -6,7 +6,7 @@
 /*   By: yhadari <yhadari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 15:26:34 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/16 15:08:45 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/16 23:55:38 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 int		count;
 int		point;
 int		ft_printf(const char *ptr, ...);
-int		ft_checknum1(const char *ptr, long *valg, int *k);
+void	ft_checknum1(const char *ptr, long *valg, int *k);
 void	ft_putnbr_fd(long n, int fd);
 void	ft_putchar_fd(char c, int fd);
 int		ft_isdigit(const char *c);
@@ -31,12 +31,11 @@ int		ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
 char	*ft_itoa(int n);
 int		ft_pointzero(const char *ptr, long *valg, const char *str, int *nb);
-int		ft_point(const char *ptr, long *valg, const char *str, int *n, int **k);
+int		ft_point(const char *ptr, long *valg, int *n, int **k);
 char	*ft_strchr(const char *s, int c);
-int		checkpoint(const char *p);
 int     ft_checkptr(const char *ptr, int *i, va_list *args);
 int     ft_printfdd(const char *ptr, va_list *args);
-int		ft_zero(long *valg, const char *str, int *n, int *i, int *nb);
+int		ft_zero(long *valg, int *n, int *i, int *nb);
 int     ft_njma(const char *ptr, long *valg, va_list *args);
 char    *ft_concat(char c, char *ptr, const char *a, int k);
 int     ft_njma1(char *a, const char *ptr, long *valg, int z);
@@ -48,4 +47,14 @@ char    *ft_con(char a, char *ptr);
 char    *ft_join(char *a, char *b, char c);
 char    *ft_concat2(char c, char *ptr);
 int     ft_njma10(const char *ptr, long *valg, va_list *args);
+void	ft_point1(long *valg, int *nb, int *i, int *n);
+int     ft_printfdd1(const char *ptr, long *valg, int *k);
+int     ft_n1(char *a, int *z, long *valg, int *i);
+int     ft_n2(char *a, int *z, long *valg, int *j);
+int     ft_n3(char *a, long *valg, int *j);
+void    ft_mzero1(char **p, const char *ptr, int *i, int *j);
+int     ft_mzero2(char **p, long *num, int *k);
+void    ft_njma11(const char *ptr, const char **c, int *z);
+int     ft_1njma(const char *ptr, const char *(*arr)[2], int (*arr1)[3], long *valg);
+int     ft_2njma(const char *ptr, const char *(*arr)[2], int (*arr1)[3], long *valg);
 #endif

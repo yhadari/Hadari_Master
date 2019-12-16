@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 19:42:51 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/03 21:46:16 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/16 22:46:53 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,13 @@ int				ft_write(int n, int fd)
 
 void			ft_putnbr_fd(long n, int fd)
 {
-	int i;
-	int j;
-	long ncopy;
+	int		i;
+	int		j;
+	long	ncopy;
 
 	j = 9;
-	if ((n == 0 || n == -2147483648 || n == 2147483647 || n == 2147483648) && checknum(n, &fd))
+	if ((n == 0 || n == -2147483648 || n == 2147483647 || n == 2147483648) &&
+			checknum(n, &fd))
 		return ;
 	revnum(&n, &ncopy, &i);
 	if (n < 0)
