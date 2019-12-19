@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printfdd1.c                                     :+:      :+:    :+:   */
+/*   ft_uprintfdd1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/16 18:02:45 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/18 15:35:19 by yhadari          ###   ########.fr       */
+/*   Created: 2019/12/17 14:51:54 by yhadari           #+#    #+#             */
+/*   Updated: 2019/12/17 19:16:37 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int		ft_printfdd1(const char *ptr, long *valg, int *k)
+int		ft_uprintfdd1(const char *ptr, long long *valg, long long *k)
 {
 	if (ft_isdigit(ptr) || (*ptr == '.' && ptr[1] != '*') || (*ptr == '-' &&
 				ft_strchr((ptr + 1), '.')))
 	{
-		ft_checknum1(ptr, valg, k);
+		ft_uchecknum1(ptr, valg, k);
 		if (*valg == 0 && ptr[0] != '-' && (ptr[0] == '.' || point != 0))
 			return (1);
 		if (*valg != 0 || (*valg == 0 && ft_strchr(ptr, '.') &&
-					ft_atoi(ptr) > ft_atoi(ft_strchr(ptr, '.'))) ||
+					ft_uatoi(ptr) > ft_uatoi(ft_strchr(ptr, '.'))) ||
 				(*valg == 0 && !ft_strchr(ptr, '.')))
-			ft_putnbr_fd(*valg, 1);
+			ft_uputnbr_fd(*valg, 1);
 		if (*k != 0)
 			while ((*k)--)
 				ft_putchar_fd(' ', 1);
 	}
 	if (*ptr == '-' && !ft_strchr((ptr + 1), '.'))
 	{
-		ft_putnbr_fd(*valg, 1);
-		ft_checknum1(ptr, valg, k);
+		ft_uputnbr_fd(*valg, 1);
+		ft_uchecknum1(ptr, valg, k);
 	}
 	return (1);
 }

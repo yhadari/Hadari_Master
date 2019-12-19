@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_uzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/11 17:28:55 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/18 21:06:55 by yhadari          ###   ########.fr       */
+/*   Created: 2019/12/17 14:44:41 by yhadari           #+#    #+#             */
+/*   Updated: 2019/12/17 19:58:34 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-char	*ft_strchr(const char *s, int c)
+int		ft_uzero(long long *valg, long long *n, long long *i, long long *nb)
 {
-	int i;
-
-	i = 0;
-	while (s[i] != 'u' && s[i] != 'd')
+	if (*nb >= ft_ustrlen(ft_uitoa(*valg)))
+		*i += *nb - ft_ustrlen(ft_uitoa(*valg));
+	while ((*n)-- > (ft_ustrlen(ft_uitoa(*valg)) + *i))
+		ft_putchar_fd(' ', 1);
+	if (*valg == 0)
 	{
-		if (s[i] == c)
-			return ((char*)s + i);
-		if (s[i] == '\0')
-			return (NULL);
-		i++;
+		if (*n == 0 && *nb == 0)
+		{
+			ft_putchar_fd(' ', 1);
+			point++;
+		}
 	}
-	return (NULL);
+	while ((*i)--)
+		ft_putchar_fd('0', 1);
+	return (1);
 }

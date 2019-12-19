@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_ustrdup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/11 17:28:55 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/18 21:06:55 by yhadari          ###   ########.fr       */
+/*   Created: 2019/12/17 16:19:02 by yhadari           #+#    #+#             */
+/*   Updated: 2019/12/17 16:54:15 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_ustrdup(const char *s1)
 {
-	int i;
+	int		i;
+	char	*ptr;
 
 	i = 0;
-	while (s[i] != 'u' && s[i] != 'd')
+	ptr = malloc(ft_ustrlen(s1) + 1);
+	if (!ptr)
+		return (NULL);
+	while (s1[i] != '\0')
 	{
-		if (s[i] == c)
-			return ((char*)s + i);
-		if (s[i] == '\0')
-			return (NULL);
+		ptr[i] = s1[i];
 		i++;
 	}
-	return (NULL);
+	ptr[i] = '\0';
+	return (ptr);
 }

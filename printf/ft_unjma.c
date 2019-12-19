@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_njma.c                                          :+:      :+:    :+:   */
+/*   ft_unjma.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/04 17:11:42 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/19 01:43:17 by yhadari          ###   ########.fr       */
+/*   Created: 2019/12/17 16:44:06 by yhadari           #+#    #+#             */
+/*   Updated: 2019/12/18 17:45:41 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-char	*ft_concat1(char c, char *ptr, const char *a)
+char	*ft_uconcat1(char c, char *ptr, const char *a)
 {
-	char	*p;
-	int		i;
-	int		j;
+	char		*p;
+	long long	i;
+	int			j;
 
 	j = 0;
-	i = ft_strlen(ptr);
+	i = ft_ustrlen(ptr);
 	p = malloc(i + 3);
 	p[j++] = c;
 	p[j++] = *a;
@@ -29,21 +29,21 @@ char	*ft_concat1(char c, char *ptr, const char *a)
 	return (p);
 }
 
-char	*ft_concat(char c, char *ptr, const char *a, int k)
+char	*ft_uconcat(char c, char *ptr, const char *a, long long k)
 {
 	char	*p;
 	int		i;
 	int		j;
 
 	if (k == 0)
-		return (ft_concat1(c, ptr, a));
+		return (ft_uconcat1(c, ptr, a));
 	i = 0;
 	if (a != NULL)
 		i = 1;
 	if (*ptr == '-' && c == 0)
 		return (0);
 	j = 0;
-	i += ft_strlen(ptr) + 1;
+	i += ft_ustrlen(ptr) + 1;
 	p = malloc(i + 1);
 	p[j++] = c;
 	while (*ptr)
@@ -55,38 +55,39 @@ char	*ft_concat(char c, char *ptr, const char *a, int k)
 	return (p);
 }
 
-int		ft_1njma(const char *ptr, const char *(*arr)[2], int (*arr1)[3],
-		long *valg)
+int		ft_u1njma(const char *ptr, const char *(*arr)[2], long long (*arr1)[3],
+		long long *valg)
 {
 	if (ft_isdigit(ptr) && ptr[2] == '*' && ft_strchr(ptr, '.'))
 		(*arr)[0] = ".";
 	if ((*ptr == '*' && *(ptr + 2) == '*'))
 		(*arr1)[1] = *valg;
-	if (*ptr == '*' && *(ptr + 1) == 'd')
+	if (*ptr == '*' && *(ptr + 1) == 'u')
 		(*arr)[1] = ft_itoa((*arr1)[0]);
 	if ((*ptr == '-' || *ptr == '0' || *ptr == '.' ||
 				(*ptr == '*' && *(ptr + 2) != '*') ||
 				(ft_isdigit(ptr) && ptr[2] == '*' && ft_strchr(ptr, '.'))) &&
-			ptr[1] != 'd')
+			ptr[1] != 'u')
 	{
 		if (!(ft_isdigit(ptr) && ptr[2] == '*') &&
-				ft_njma1((char*)(*arr)[0], ptr, valg, (*arr1)[0]))
+				ft_unjma1((char*)(*arr)[0], ptr, valg, (*arr1)[0]))
 			return (1);
 		if (ft_isdigit(ptr) && ptr[2] == '*')
 			(*arr1)[2] = 0;
-		(*arr)[1] = ft_concat(*ptr, ft_itoa((*arr1)[0]), (*arr)[0], (*arr1)[2]);
+		(*arr)[1] = ft_uconcat(*ptr, ft_itoa((*arr1)[0]), (*arr)[0],
+		(*arr1)[2]);
 		(*arr1)[2] = 1;
 	}
 	return (0);
 }
 
-int		ft_2njma(const char *ptr, const char *(*arr)[2], int (*arr1)[3],
-		long *valg)
+int		ft_u2njma(const char *ptr, const char *(*arr)[2], long long (*arr1)[3],
+		long long *valg)
 {
 	if (ft_isdigit((*arr)[1]) || *((*arr)[1]) == '.' || (*((*arr)[1]) == '-' &&
 				ft_strchr(((*arr)[1] + 1), '.')))
 	{
-		ft_checknum1((*arr)[1], valg, &(*arr1)[2]);
+		ft_uchecknum1((*arr)[1], valg, &(*arr1)[2]);
 		if (*ptr == '*' && *(ptr + 1) == '.' && *(ptr + 2) == '*' &&
 				*valg == 0 && (*arr1)[1] >= 0 && (*arr1)[0] >= 0)
 			return (1);
@@ -95,38 +96,38 @@ int		ft_2njma(const char *ptr, const char *(*arr)[2], int (*arr1)[3],
 		(*arr1)[1] < 0 && (*arr1)[0] >= 0) ||
 		(*ptr == '0' && *(ptr + 1) == '*' && *(ptr + 2) != '.') ||
 		(*ptr == '.' && *(ptr + 1) == '*' && (*arr1)[0] < 0)) && *valg == 0))
-			ft_putnbr_fd(*valg, 1);
+			ft_uputnbr_fd(*valg, 1);
 		while ((*arr1)[2]--)
 			ft_putchar_fd(' ', 1);
 	}
 	if (*((*arr)[1]) == '-' && !ft_strchr(((*arr)[1] + 1), '.'))
 	{
-		ft_putnbr_fd(*valg, 1);
-		ft_checknum1((*arr)[1], valg, &(*arr1)[2]);
+		ft_uputnbr_fd(*valg, 1);
+		ft_uchecknum1((*arr)[1], valg, &(*arr1)[2]);
 	}
 	return (1);
 }
 
-int		ft_njma(const char *ptr, long *valg, va_list *args)
+int		ft_unjma(const char *ptr, long long *valg, va_list *args)
 {
 	const char	*arr[2];
-	int			arr1[3];
+	long long	arr1[3];
 
 	arr1[1] = 0;
 	arr[0] = NULL;
 	if (*ptr == '*')
 		arr[0] = (ptr + 1);
-	if (*(ptr + 1) == '*' && *(ptr + 2) != 'd')
+	if (*(ptr + 1) == '*' && *(ptr + 2) != 'u')
 		arr[0] = (ptr + 2);
 	arr1[0] = *valg;
 	arr1[2] = 1;
 	*valg = va_arg(*args, int);
-	if (ft_1njma(ptr, &arr, &arr1, valg))
+	if (ft_u1njma(ptr, &arr, &arr1, valg))
 		return (1);
 	if ((*ptr == '*' && *(ptr + 2) == '*'))
 	{
-		arr[1] = ft_join(ft_itoa(arr1[0]), ft_itoa((int)arr1[1]), *(ptr + 1));
-		*valg = va_arg(*args, int);
+		arr[1] = ft_ujoin(ft_itoa(arr1[0]), ft_itoa((int)arr1[1]), *(ptr + 1));
+		*valg = va_arg(*args, unsigned int);
 	}
-	return (ft_2njma(ptr, &arr, &arr1, valg));
+	return (ft_u2njma(ptr, &arr, &arr1, valg));
 }

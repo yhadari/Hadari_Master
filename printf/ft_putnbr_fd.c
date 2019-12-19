@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 19:42:51 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/16 22:46:53 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/17 17:35:39 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static	void	revnum(long *n, long *ncopy, int *i)
 	}
 }
 
-int				ft_write(int n, int fd)
+static int				ft_write(int n, int fd)
 {
 	ft_putchar_fd((n % 10) + 48, fd);
 	return (1);
