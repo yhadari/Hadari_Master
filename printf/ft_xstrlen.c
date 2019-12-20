@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_checkptr.c                                      :+:      :+:    :+:   */
+/*   ft_xstrlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/28 10:20:25 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/19 15:13:46 by yhadari          ###   ########.fr       */
+/*   Created: 2019/12/20 00:40:10 by yhadari           #+#    #+#             */
+/*   Updated: 2019/12/20 00:47:39 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int		ft_checkptr(const char *ptr, int *i, va_list *args)
+int   ft_xstrlen(const char *s)
 {
-	int j;
+	int i;
 
-	j = 0;
-	while (ft_strchr("-.*0123456789", ptr[j]))
-	{
-		j++;
-		(*i)++;
-	}
-	(*i)++;
-	while (ptr[j] != '\0')
-	{
-		if ((ptr[j] == 'd' || ptr[j] == 'i') && ft_printfdd(ptr, args))
-			return (0);
-		if ((ptr[j] == 'u' || ptr[j] == 'x' || ptr[j] == 'X') &&
-			ft_uprintfdd(ptr, args))
-			return (0);
-	}
-	return (0);
+	i = 0;
+	while (s[i] != 'x' && s[i] != 'X')
+		i++;
+	return (i);
 }

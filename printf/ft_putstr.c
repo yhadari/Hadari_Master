@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_checkptr.c                                      :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/28 10:20:25 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/19 15:13:46 by yhadari          ###   ########.fr       */
+/*   Created: 2019/12/19 17:07:54 by yhadari           #+#    #+#             */
+/*   Updated: 2019/12/19 17:13:29 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int		ft_checkptr(const char *ptr, int *i, va_list *args)
+void	ft_putstr(char *c)
 {
-	int j;
+	int i;
 
-	j = 0;
-	while (ft_strchr("-.*0123456789", ptr[j]))
-	{
-		j++;
-		(*i)++;
-	}
-	(*i)++;
-	while (ptr[j] != '\0')
-	{
-		if ((ptr[j] == 'd' || ptr[j] == 'i') && ft_printfdd(ptr, args))
-			return (0);
-		if ((ptr[j] == 'u' || ptr[j] == 'x' || ptr[j] == 'X') &&
-			ft_uprintfdd(ptr, args))
-			return (0);
-	}
-	return (0);
+	i = 0;
+	while (c[i] != '\0')
+		ft_putchar_fd(c[i++], 1);
 }

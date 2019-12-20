@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 17:11:42 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/19 01:43:17 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/20 00:06:04 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ char	*ft_concat(char c, char *ptr, const char *a, int k)
 		p[j++] = *ptr++;
 	if (a == NULL)
 		return (p);
-	p[j] = *a;
-	p[j + 1] = '\0';
+	p[j++] = *a;
+	p[j] = '\0';
 	return (p);
 }
 
@@ -95,6 +95,8 @@ int		ft_2njma(const char *ptr, const char *(*arr)[2], int (*arr1)[3],
 		(*arr1)[1] < 0 && (*arr1)[0] >= 0) ||
 		(*ptr == '0' && *(ptr + 1) == '*' && *(ptr + 2) != '.') ||
 		(*ptr == '.' && *(ptr + 1) == '*' && (*arr1)[0] < 0)) && *valg == 0))
+			ft_putnbr_fd(*valg, 1);
+		if (*ptr == '0' && *valg == 0 && (*arr1)[0] < 0)
 			ft_putnbr_fd(*valg, 1);
 		while ((*arr1)[2]--)
 			ft_putchar_fd(' ', 1);

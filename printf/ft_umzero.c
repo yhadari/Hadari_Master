@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 13:45:36 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/17 23:14:24 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/20 01:27:43 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_ucon(char a, char *ptr)
 	return (p);
 }
 
-char	*ft_ujoin(char *a, char *b, char c)
+char	*ft_ujoin(char *a, char *b, char c, char d)
 {
 	char	*p;
 	int		i;
@@ -36,7 +36,7 @@ char	*ft_ujoin(char *a, char *b, char c)
 
 	i = 0;
 	j = 0;
-	i = (ft_ustrlen(a) + ft_ustrlen(b) + 1);
+	i = (ft_ustrlen(a) + ft_ustrlen(b) + 2);
 	if (*b == '-')
 		i = (ft_ustrlen(a) + 1);
 	p = malloc(i + 1);
@@ -48,6 +48,7 @@ char	*ft_ujoin(char *a, char *b, char c)
 		while (*b && i--)
 			p[j++] = *b++;
 	}
+	p[j++] = d;
 	p[j] = '\0';
 	return (p);
 }
@@ -66,34 +67,46 @@ void	ft_umzero1(char **p, const char *ptr, long long *i, long long *j)
 		if (*j >= 0)
 		{
 			if (*i <= 0)
-				*p = ft_ujoin(ft_itoa(*i), ft_itoa(*j), '.');
+				*p = ft_ujoin(ft_itoa(*i), ft_itoa(*j), '.', *(ptr + ft_strlen(ptr) - 1));
 			else
 			{
 				*p = ft_ucon('0', ft_itoa(*i));
-				*p = ft_ujoin(*p, ft_itoa(*j), '.');
+				*p = ft_ujoin(*p, ft_itoa(*j), '.', *(ptr + ft_strlen(ptr) - 1));
 			}
 		}
 	}
 }
 
-int		ft_umzero2(char **p, long long *num, long long *k)
+int		ft_umzero2(char **p, long long *num, long long *k, const char *ptr)
 {
 	if (ft_isdigit(*p) || (**p == '-' && ft_strchr((*p + 1), '.')))
 	{
+		if (ft_strchr(ptr, 'x') || ft_strchr(ptr, 'X'))
+			*p = ft_uconx(*(ptr + ft_xstrlen(ptr)), *p);
 		ft_uchecknum1(*p, num, k);
 		if (*num == 0 && *p[0] != '-' && (*p[0] == '.' || point != 0))
 			return (1);
 		if (*num != 0 || (*num == 0 && ft_strchr(*p, '.') &&
 					ft_uatoi(*p) > ft_uatoi(ft_strchr(*p, '.'))) ||
 				(*num == 0 && !ft_strchr(*p, '.')))
-			ft_uputnbr_fd(*num, 1);
+		{
+			if (!ft_strchr(ptr, 'u'))
+				ft_putstr(ft_uitoa(*num, ptr));
+			else
+				ft_uputnbr_fd(*num, 1);
+		}
 		if (*k != 0)
 			while ((*k)--)
 				ft_putchar_fd(' ', 1);
 	}
 	if (**p == '-' && !ft_strchr((*p + 1), '.'))
 	{
-		ft_uputnbr_fd(*num, 1);
+		if (!ft_strchr(ptr, 'u'))
+			ft_putstr(ft_uitoa(*num, ptr));
+		else
+			ft_uputnbr_fd(*num, 1);
+		if (ft_strchr(ptr, 'x') || ft_strchr(ptr, 'X'))
+			*p = ft_uconx(*(ptr + ft_strlen(ptr) - 1), *p);
 		ft_uchecknum1(*p, num, k);
 	}
 	return (1);
@@ -113,8 +126,8 @@ int		ft_umzero(const char *ptr, long long *valg, va_list *args, long long *k)
 	{
 		if (i > 0)
 			i = -i;
-		p = ft_ujoin(ft_itoa(i), ft_itoa(j), '.');
+		p = ft_ujoin(ft_itoa(i), ft_itoa(j), '.', *(ptr + ft_strlen(ptr) - 1));
 	}
 	ft_umzero1(&p, ptr, &i, &j);
-	return (ft_umzero2(&p, &num, k));
+	return (ft_umzero2(&p, &num, k, ptr));
 }

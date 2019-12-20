@@ -6,7 +6,7 @@
 /*   By: yhadari <yhadari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 15:26:34 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/17 20:08:51 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/20 00:43:06 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int     ft_1njma(const char *ptr, const char *(*arr)[2], int (*arr1)[3], long *v
 int     ft_2njma(const char *ptr, const char *(*arr)[2], int (*arr1)[3], long *valg);
 void    ft_uchecknum1(const char *ptr, long long *valg, long long *k);
 int     ft_upointzero(const char *str, long long *nb);
-void    ft_upoint1(long long *valg, long long *nb, long long *n);
+void    ft_upoint1(long long *valg, long long nb, long long *n);
 int     ft_upoint(const char *ptr, long long *valg, long long *n, long long **k);
 int     ft_uprintfdd(const char *ptr, va_list *args);
 int     ft_uprintfdd1(const char *ptr, long long *valg, long long *k);
@@ -70,24 +70,29 @@ int     ft_u2njma(const char *ptr, const char *(*arr)[2], long long (*arr1)[3],
 		long long *valg);
 int     ft_unjma(const char *ptr, long long *valg, va_list *args);
 int     ft_unjma3(char *a, const char *ptr, long long z, long long *valg);
-int     ft_un1(char *a, long long *z, long long *valg, long long *i);
-int     ft_un2(char *a, long long *z, long long *valg, long long *j);
-int     ft_un3(char *a, long long *valg, long long *j);
+int     ft_un1(const char *arr[2], long long *z, long long *valg, long long *i);
+int     ft_un2(const char *arr[2], long long *z, long long *valg, long long *j);
+int     ft_un3(const char *arr[2], long long *valg, long long *j);
 void            ft_uputnbr_fd(unsigned int n, int fd);
-int     ft_uzero(long long *valg, long long *n, long long *i, long long *nb);
-char            *ft_uitoa(unsigned int n);
+int     ft_uzero(long long *valg, long long *n, long long arr[2], const char *ptr);
 int     ft_unjma1(char *a, const char *ptr, long long *valg, long long z);
 int     ft_unjma2(const char *ptr, long long *valg, long long z);
 char    *ft_ustrdup(const char *s1);
 int     ft_umzero(const char *ptr, long long *valg, va_list *args, long long *k);
 void    ft_umzero1(char **p, const char *ptr, long long *i, long long *j);
-int     ft_umzero2(char **p, long long *num, long long *k);
+int     ft_umzero2(char **p, long long *num, long long *k, const char *ptr);
 int     ft_unjma10(const char *ptr, long long *valg, va_list *args);
 void    ft_unjma11(const char *ptr, const char **c, long long *z);
 char    *ft_uconcat2(char c, char *ptr);
 char    *ft_uconcat(char c, char *ptr, const char *a, long long k);
 char    *ft_uconcat1(char c, char *ptr, const char *a);
 char    *ft_ucon(char a, char *ptr);
-char    *ft_ujoin(char *a, char *b, char c);
+char    *ft_ujoin(char *a, char *b, char c, char d);
 long long     ft_ustrlen(const char *s);
+char    *ft_strev(char *ptr);
+char    *ft_xflag(unsigned int n, int k);
+char            *ft_uitoa(unsigned int n, const char *a);
+void    ft_putstr(char *c);
+char    *ft_uconx(char a, const char *ptr);
+int		ft_xstrlen(const char *s);
 #endif

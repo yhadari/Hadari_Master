@@ -2,8 +2,8 @@
 
 int main()
  {
-    printf("|%u|\n", ft_printf("%0*.*u", 10, 5, 42));
-    printf("|%u|\n\n", printf("%0*.*u", 10, 5, 42));
+    printf("%d\n", ft_printf("%0.*u", -25, 0));
+    printf("%d\n", printf("%0.*u", -25, 0));
 
     printf("|%u|\n", ft_printf("%0*.*u", -10, 5, 42));
     printf("|%u|\n\n", printf("%0*.*u", -10, 5, 42));

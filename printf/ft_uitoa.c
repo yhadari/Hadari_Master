@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_uitoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: yhadari <yhadari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 14:57:22 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/17 20:10:15 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/19 16:59:55 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,13 @@ static	char	*writeptr(unsigned int n)
 	return (ptr);
 }
 
-char			*ft_uitoa(unsigned int n)
+char			*ft_uitoa(unsigned int n, const char *a)
 {
 	char		*ptr;
 	long long	i;
 
+	if (ft_strchr(a, 'x') || ft_strchr(a, 'X'))
+		return (ft_xflag(n, (ft_strchr(a, 'x')) == NULL));
 	i = 0;
 	if (n == 0)
 		return (ft_ustrdup("0"));

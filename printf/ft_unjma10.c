@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 15:38:40 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/17 23:16:24 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/20 01:26:29 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_unjma11(const char *ptr, const char **c, long long *z)
 	if (*ptr != '0')
 	{
 		if (*z >= 0)
-			*c = ft_ujoin(ft_itoa(ft_uatoi(ptr)), ft_itoa(*z), '.');
+			*c = ft_ujoin(ft_itoa(ft_uatoi(ptr)), ft_itoa(*z), '.', *(ptr + ft_strlen(ptr) - 1));
 		else
 			*c = ft_itoa(ft_uatoi(ptr));
 	}
@@ -42,7 +42,9 @@ void	ft_unjma11(const char *ptr, const char **c, long long *z)
 		if (*z >= 0)
 		{
 			*c = ft_uconcat2('0', ft_itoa(ft_uatoi(ptr)));
-			*c = ft_ujoin((char*)*c, ft_itoa(*z), '.');
+			*c = ft_ujoin((char*)*c, ft_itoa(*z), '.', *(ptr + ft_strlen(ptr) - 1));
+			if (ft_strchr(ptr, 'x') || ft_strchr(ptr, 'X'))
+				*c = ft_uconx(*(ptr + ft_xstrlen(ptr)), *c);
 		}
 		else
 			*c = ft_uconcat2('0', ft_itoa(ft_uatoi(ptr)));
@@ -61,17 +63,24 @@ int		ft_unjma10(const char *ptr, long long *valg, va_list *args)
 	ft_unjma11(ptr, &c, &z);
 	if (ft_isdigit(c) || *c == '.' || (*c == '-' && ft_strchr((c + 1), '.')))
 	{
+		c = ft_uconx(*(ptr + ft_strlen(ptr) - 1), c);
 		ft_uchecknum1(c, valg, &k);
 		if ((*valg == 0 && z >= 0 && (ptr[2] == '.' ||
 						(ptr[2] == '*' && ptr[0] != '*'))))
 			return (1);
-		ft_uputnbr_fd(*valg, 1);
+		if (!ft_strchr(ptr, 'u'))
+			ft_putstr(ft_uitoa(*valg, ptr));
+		else
+			ft_uputnbr_fd(*valg, 1);
 		while (k--)
 			ft_putchar_fd(' ', 1);
 	}
 	if (*c == '-' && !ft_strchr((c + 1), '.'))
 	{
-		ft_uputnbr_fd(*valg, 1);
+		if (!ft_strchr(ptr, 'u'))
+			ft_putstr(ft_uitoa(*valg, ptr));
+		else
+			ft_uputnbr_fd(*valg, 1);
 		ft_uchecknum1(c, valg, &k);
 	}
 	return (1);
