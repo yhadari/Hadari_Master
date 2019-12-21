@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_xstrlen.c                                       :+:      :+:    :+:   */
+/*   ft_cisdigit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/20 00:40:10 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/21 01:05:48 by yhadari          ###   ########.fr       */
+/*   Created: 2019/12/20 14:52:18 by yhadari           #+#    #+#             */
+/*   Updated: 2019/12/20 23:54:50 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int		ft_xstrlen(const char *s)
+int		ft_cisdigit(const char *c)
 {
-	int i;
-
-	i = 0;
-	while (s[i] != 'x' && s[i] != 'X')
-		i++;
-	return (i);
+	if (*c > 47 && *c < 58)
+		return (1);
+	return (0);
 }

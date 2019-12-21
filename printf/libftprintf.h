@@ -6,7 +6,7 @@
 /*   By: yhadari <yhadari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 15:26:34 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/20 00:43:06 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/21 00:59:29 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int     ft_unjma(const char *ptr, long long *valg, va_list *args);
 int     ft_unjma3(char *a, const char *ptr, long long z, long long *valg);
 int     ft_un1(const char *arr[2], long long *z, long long *valg, long long *i);
 int     ft_un2(const char *arr[2], long long *z, long long *valg, long long *j);
+int     ft_pourcentage(const char *ptr, va_list *args);
 int     ft_un3(const char *arr[2], long long *valg, long long *j);
 void            ft_uputnbr_fd(unsigned int n, int fd);
 int     ft_uzero(long long *valg, long long *n, long long arr[2], const char *ptr);
@@ -83,6 +84,8 @@ void    ft_umzero1(char **p, const char *ptr, long long *i, long long *j);
 int     ft_umzero2(char **p, long long *num, long long *k, const char *ptr);
 int     ft_unjma10(const char *ptr, long long *valg, va_list *args);
 void    ft_unjma11(const char *ptr, const char **c, long long *z);
+int     ft_1unjma1(const char *ptr, long long *valg, long long z);
+void    ft_1uprintfdd1(const char *ptr, long long *valg, long long *k);
 char    *ft_uconcat2(char c, char *ptr);
 char    *ft_uconcat(char c, char *ptr, const char *a, long long k);
 char    *ft_uconcat1(char c, char *ptr, const char *a);
@@ -95,4 +98,18 @@ char            *ft_uitoa(unsigned int n, const char *a);
 void    ft_putstr(char *c);
 char    *ft_uconx(char a, const char *ptr);
 int		ft_xstrlen(const char *s);
+int     ft_cisdigit(const char *c);
+int     ft_cflag(const char *ptr, va_list *args);
+char    *ft_cstrchr(const char *s, int c);
+int     ft_cflag1(const char *ptr, va_list *args, char valg, int valg1);
+int     ft_check(const char *ptr);
+int    ft_writepo(int num, char i);
+void    ft_pourcentage1(const char *ptr, char *i, int *num);
+void        ft_unjma12(const char *ptr, const char *c, long long *valg,
+		    long long *k);
+void    ft_umzero3(char **p, long long *num, long long *k, const char *ptr);
+int     ft_un0(const char *arr[2], long long *j, long long *z);
+void    ft_uprintfdd2(const char *ptr, long long valg);
+int     ft_2unjma2(const char *ptr, long long *valg, long long z);
+void    ft_u2njmanext(const char *ptr, long long (*arr1)[3], long long *valg);
 #endif

@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 03:45:52 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/19 15:12:00 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/21 01:06:24 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*ft_strev(char *ptr)
 {
-	int i;
-	int a;
-	char *p;
+	int		i;
+	int		a;
+	char	*p;
 
 	i = 0;
 	a = ft_strlen(ptr);
@@ -29,10 +29,10 @@ char	*ft_strev(char *ptr)
 
 char	*ft_xflag(unsigned int n, int k)
 {
-	unsigned int num;
-	unsigned int i;
-	char *ptr;
-	char *hx;
+	unsigned int	num;
+	unsigned int	i;
+	char			*ptr;
+	char			*hx;
 
 	if (k == 0)
 		hx = "0123456789abcdef";

@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_xstrlen.c                                       :+:      :+:    :+:   */
+/*   ft_cstrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/20 00:40:10 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/21 01:05:48 by yhadari          ###   ########.fr       */
+/*   Created: 2019/12/20 16:18:38 by yhadari           #+#    #+#             */
+/*   Updated: 2019/12/20 23:55:01 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int		ft_xstrlen(const char *s)
+char	*ft_cstrchr(const char *s, int c)
 {
 	int i;
 
 	i = 0;
-	while (s[i] != 'x' && s[i] != 'X')
+	while (s[i] != 'c' && s[i] != '%')
+	{
+		if (s[i] == c)
+			return ((char*)s + i);
+		if (s[i] == '\0')
+			return (NULL);
 		i++;
-	return (i);
+	}
+	return (NULL);
 }

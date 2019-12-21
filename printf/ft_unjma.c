@@ -6,28 +6,11 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 16:44:06 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/20 01:27:14 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/21 01:02:18 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
-char	*ft_uconcat1(char c, char *ptr, const char *a)
-{
-	char		*p;
-	long long	i;
-	int			j;
-
-	j = 0;
-	i = ft_ustrlen(ptr);
-	p = malloc(i + 3);
-	p[j++] = c;
-	p[j++] = *a;
-	while (i--)
-		p[j++] = *ptr++;
-	p[j] = '\0';
-	return (p);
-}
 
 char	*ft_uconcat(char c, char *ptr, const char *a, long long k)
 {
@@ -85,6 +68,21 @@ int		ft_u1njma(const char *ptr, const char *(*arr)[2], long long (*arr1)[3],
 	return (0);
 }
 
+void	ft_u2njmanext(const char *ptr, long long (*arr1)[3], long long *valg)
+{
+	if (*valg != 0 || (((*ptr == '*' && *(ptr + 2) != '*') ||
+		(*ptr == '*' && *(ptr + 1) == '.' && *(ptr + 2) == '*' && *valg == 0 &&
+		(*arr1)[1] < 0 && (*arr1)[0] >= 0) ||
+		(*ptr == '0' && *(ptr + 1) == '*' && *(ptr + 2) != '.') ||
+		(*ptr == '.' && *(ptr + 1) == '*' && (*arr1)[0] < 0)) && *valg == 0))
+	{
+		if (!ft_strchr(ptr, 'u'))
+			ft_putstr(ft_uitoa(*valg, ptr));
+		else
+			ft_uputnbr_fd(*valg, 1);
+	}
+}
+
 int		ft_u2njma(const char *ptr, const char *(*arr)[2], long long (*arr1)[3],
 		long long *valg)
 {
@@ -97,17 +95,7 @@ int		ft_u2njma(const char *ptr, const char *(*arr)[2], long long (*arr1)[3],
 		if (*ptr == '*' && *(ptr + 1) == '.' && *(ptr + 2) == '*' &&
 				*valg == 0 && (*arr1)[1] >= 0 && (*arr1)[0] >= 0)
 			return (1);
-		if (*valg != 0 || (((*ptr == '*' && *(ptr + 2) != '*') ||
-						(*ptr == '*' && *(ptr + 1) == '.' && *(ptr + 2) == '*' && *valg == 0 &&
-						 (*arr1)[1] < 0 && (*arr1)[0] >= 0) ||
-						(*ptr == '0' && *(ptr + 1) == '*' && *(ptr + 2) != '.') ||
-						(*ptr == '.' && *(ptr + 1) == '*' && (*arr1)[0] < 0)) && *valg == 0))
-		{
-			if (!ft_strchr(ptr, 'u'))
-				ft_putstr(ft_uitoa(*valg, ptr));
-			else
-				ft_uputnbr_fd(*valg, 1);
-		}
+		ft_u2njmanext(ptr, arr1, valg);
 		if (*ptr == '0' && *valg == 0 && (*arr1)[0] < 0)
 			ft_uputnbr_fd(*valg, 1);
 		while ((*arr1)[2]--)
@@ -115,10 +103,8 @@ int		ft_u2njma(const char *ptr, const char *(*arr)[2], long long (*arr1)[3],
 	}
 	if (*((*arr)[1]) == '-' && !ft_strchr(((*arr)[1] + 1), '.'))
 	{
-		if (!ft_strchr(ptr, 'u'))
-			ft_putstr(ft_uitoa(*valg, ptr));
-		else
-			ft_uputnbr_fd(*valg, 1);
+		(!ft_strchr(ptr, 'u')) ? ft_putstr(ft_uitoa(*valg, ptr))
+			: (ft_uputnbr_fd(*valg, 1));
 		if (ft_strchr(ptr, 'x') || ft_strchr(ptr, 'X'))
 			(*arr)[1] = ft_uconx(*(ptr + ft_xstrlen(ptr)), (*arr)[1]);
 		ft_uchecknum1((*arr)[1], valg, &(*arr1)[2]);
@@ -130,7 +116,7 @@ int		ft_unjma(const char *ptr, long long *valg, va_list *args)
 {
 	const char	*arr[2];
 	long long	arr1[3];
-	char i;
+	char		i;
 
 	i = *(ptr + ft_strlen(ptr) - 1);
 	arr1[1] = 0;

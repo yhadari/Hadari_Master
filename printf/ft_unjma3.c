@@ -6,7 +6,7 @@
 /*   By: yhadari <yhadari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 16:41:18 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/19 18:06:15 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/20 23:39:59 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,17 @@ int		ft_un3(const char *arr[2], long long *valg, long long *j)
 	return (1);
 }
 
+int		ft_un0(const char *arr[2], long long *j, long long *z)
+{
+	*j = *z - ft_uatoi(arr[0]);
+	*z = *z - *j;
+	while ((*j)-- > 0)
+		ft_putchar_fd(' ', 1);
+	while ((*z)-- > 0)
+		ft_putchar_fd('0', 1);
+	return (1);
+}
+
 int		ft_unjma3(char *a, const char *ptr, long long z, long long *valg)
 {
 	long long	i;
@@ -77,15 +88,7 @@ int		ft_unjma3(char *a, const char *ptr, long long z, long long *valg)
 	if (z > 0)
 	{
 		if (*valg == 0)
-		{
-			j = z - ft_uatoi(arr[0]);
-			z = z - j;
-			while (j-- > 0)
-				ft_putchar_fd(' ', 1);
-			while (z-- > 0)
-				ft_putchar_fd('0', 1);
-			return (1);
-		}
+			return (ft_un0(arr, &j, &z));
 		return (ft_un1(arr, &z, valg, &i));
 	}
 	if (z < 0)

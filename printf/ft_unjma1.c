@@ -6,17 +6,17 @@
 /*   By: yhadari <yhadari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 16:07:00 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/19 21:17:37 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/21 00:14:13 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-char    *ft_uconx(char a, const char *ptr)
+char	*ft_uconx(char a, const char *ptr)
 {
-	int     i;
-	int     j;
-	char    *p;
+	int		i;
+	int		j;
+	char	*p;
 
 	j = 0;
 	i = ft_ustrlen(ptr) + 1;
@@ -26,6 +26,22 @@ char    *ft_uconx(char a, const char *ptr)
 	p[j++] = a;
 	p[j] = '\0';
 	return (p);
+}
+
+int		ft_2unjma2(const char *ptr, long long *valg, long long z)
+{
+	if (z == 0 && *ptr == '*')
+	{
+		if (*valg != 0)
+		{
+			if (!ft_strchr(ptr, 'u'))
+				ft_putstr(ft_uitoa(*valg, ptr));
+			else
+				ft_uputnbr_fd(*valg, 1);
+		}
+		return (1);
+	}
+	return (0);
 }
 
 int		ft_unjma2(const char *ptr, long long *valg, long long z)
@@ -54,18 +70,19 @@ int		ft_unjma2(const char *ptr, long long *valg, long long z)
 			ft_putchar_fd(' ', 1);
 		return (1);
 	}
-	if (z == 0 && *ptr == '*')
-	{
-		if (*valg != 0)
-		{
-			if (!ft_strchr(ptr, 'u'))
-				ft_putstr(ft_uitoa(*valg, ptr));
-			else
-				ft_uputnbr_fd(*valg, 1);
-		}
-		return (1);
-	}
-	return (0);
+	return (ft_2unjma2(ptr, valg, z));
+}
+
+int		ft_1unjma1(const char *ptr, long long *valg, long long z)
+{
+	z = z - ft_ustrlen(ft_uitoa(*valg, ptr));
+	while (z-- > 0)
+		ft_putchar_fd(' ', 1);
+	if (!ft_strchr(ptr, 'u'))
+		ft_putstr(ft_uitoa(*valg, ptr));
+	else
+		ft_uputnbr_fd(*valg, 1);
+	return (1);
 }
 
 int		ft_unjma1(char *a, const char *ptr, long long *valg, long long z)
@@ -84,16 +101,7 @@ int		ft_unjma1(char *a, const char *ptr, long long *valg, long long z)
 			return (1);
 		}
 		if (z > 0 && *valg != 0 && *ptr == '*')
-		{
-			z = z - ft_ustrlen(ft_uitoa(*valg, ptr));
-			while (z-- > 0)
-				ft_putchar_fd(' ', 1);
-			if (!ft_strchr(ptr, 'u'))
-				ft_putstr(ft_uitoa(*valg, ptr));
-			else
-				ft_uputnbr_fd(*valg, 1);
-			return (1);
-		}
+			return (ft_1unjma1(ptr, valg, z));
 		if (ft_unjma2(ptr, valg, z))
 			return (1);
 	}

@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 15:28:56 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/18 18:10:46 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/21 01:05:29 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static	void	revnum(unsigned int *n, unsigned int *ncopy, int *i)
 	*i = lenum(*n);
 }
 
-static int				ft_write(unsigned int n, int fd)
+static	int		ft_write(unsigned int n, int fd)
 {
 	ft_putchar_fd((n % 10) + 48, fd);
 	return (1);
@@ -39,7 +39,7 @@ static int				ft_write(unsigned int n, int fd)
 
 void			ft_uputnbr_fd(unsigned int n, int fd)
 {
-	int		i;
+	int				i;
 	unsigned int	j;
 	unsigned int	ncopy;
 

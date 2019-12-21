@@ -6,13 +6,14 @@
 /*   By: yhadari <yhadari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 14:44:41 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/19 16:34:41 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/20 23:57:51 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int		ft_uzero(long long *valg, long long *n, long long arr[2], const char *ptr)
+int		ft_uzero(long long *valg, long long *n, long long arr[2],
+		const char *ptr)
 {
 	if (arr[1] >= ft_ustrlen(ft_uitoa(*valg, ptr)))
 		arr[0] += arr[1] - ft_ustrlen(ft_uitoa(*valg, ptr));

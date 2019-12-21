@@ -6,7 +6,7 @@
 /*   By: yhadari <yhadari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 14:45:01 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/19 22:23:59 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/20 23:46:19 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,6 @@ void	ft_uchecknum1(const char *ptr, long long *valg, long long *k)
 			ft_putchar_fd(' ', 1);
 	}
 	*k = 0;
-}
-
-int		ft_upointzero(const char *str, long long *nb)
-{
-	while ((*nb)-- > ft_ustrlen(str))
-		ft_putchar_fd('0', 1);
-	return (1);
 }
 
 void	ft_upoint1(long long *valg, long long nb, long long *n)
@@ -87,6 +80,17 @@ int		ft_upoint(const char *ptr, long long *valg, long long *n, long long **k)
 	return (1);
 }
 
+void	ft_uprintfdd2(const char *ptr, long long valg)
+{
+	if (*ptr == 'u' || *ptr == 'x' || *ptr == 'X')
+	{
+		if (!ft_strchr(ptr, 'u'))
+			ft_putstr(ft_uitoa(valg, ptr));
+		else
+			ft_uputnbr_fd(valg, 1);
+	}
+}
+
 int		ft_uprintfdd(const char *ptr, va_list *args)
 {
 	long long	valg;
@@ -100,8 +104,8 @@ int		ft_uprintfdd(const char *ptr, va_list *args)
 		valg = va_arg(*args, int);
 	k = 0;
 	if (ft_strchr(ptr, '*') && (*(ft_strchr(ptr, '*') + 1) == 'u' ||
-		ft_strchr(a, *(ft_strchr(ptr, '*') + 1))) &&
-		ft_uatoi(ptr) != 0 && ft_strchr(ptr, '.'))
+				ft_strchr(a, *(ft_strchr(ptr, '*') + 1))) &&
+			ft_uatoi(ptr) != 0 && ft_strchr(ptr, '.'))
 		return (ft_unjma10(ptr, &valg, args));
 	if ((*ptr == '-' || *ptr == '0') && ptr[1] == '*' && ptr[2] == '.' &&
 			ptr[3] == '*')
@@ -109,12 +113,6 @@ int		ft_uprintfdd(const char *ptr, va_list *args)
 	if (*ptr == '*' || ptr[1] == '*' || (ft_isdigit(ptr) && ptr[2] == '*' &&
 				ft_strchr(ptr, '.')))
 		return (ft_unjma(ptr, &valg, args));
-	if (*ptr == 'u' || *ptr == 'x' || *ptr == 'X')
-	{
-		if (!ft_strchr(ptr, 'u'))
-			ft_putstr(ft_uitoa(valg, ptr));
-		else
-			ft_uputnbr_fd(valg, 1);
-	}
+	ft_uprintfdd2(ptr, valg);
 	return (ft_uprintfdd1(ptr, &valg, &k));
 }
