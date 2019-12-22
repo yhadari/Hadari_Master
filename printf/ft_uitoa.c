@@ -6,13 +6,13 @@
 /*   By: yhadari <yhadari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 14:57:22 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/19 16:59:55 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/22 00:20:03 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static	int		lenum(unsigned int n)
+static	int		ulenum(unsigned int n)
 {
 	long long i;
 	long long j;
@@ -35,8 +35,8 @@ static	char	*writeptr(unsigned int n)
 	long long	modulo;
 
 	modulo = 0;
-	i = lenum(n);
-	ptr = malloc((lenum(n) + 1) * sizeof(char));
+	i = ulenum(n);
+	ptr = malloc((ulenum(n) + 1) * sizeof(char));
 	if (!ptr)
 		return (NULL);
 	while (n > 0)

@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 16:44:06 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/21 01:02:18 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/22 03:22:14 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,9 @@ int		ft_u2njma(const char *ptr, const char *(*arr)[2], long long (*arr1)[3],
 			(*arr)[1] = ft_uconx(*(ptr + ft_xstrlen(ptr)), (*arr)[1]);
 		ft_uchecknum1((*arr)[1], valg, &(*arr1)[2]);
 		if (*ptr == '*' && *(ptr + 1) == '.' && *(ptr + 2) == '*' &&
-				*valg == 0 && (*arr1)[1] >= 0 && (*arr1)[0] >= 0)
-			return (1);
+			*valg == 0 && (*arr1)[1] > 0 && (*arr1)[0] > 0 &&
+			(*arr1)[0] > (*arr1)[1])
+			ft_uputnbr_fd(*valg, 1);
 		ft_u2njmanext(ptr, arr1, valg);
 		if (*ptr == '0' && *valg == 0 && (*arr1)[0] < 0)
 			ft_uputnbr_fd(*valg, 1);

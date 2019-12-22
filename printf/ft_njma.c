@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 17:11:42 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/20 00:06:04 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/22 04:30:08 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ int		ft_1njma(const char *ptr, const char *(*arr)[2], int (*arr1)[3],
 		(*arr)[0] = ".";
 	if ((*ptr == '*' && *(ptr + 2) == '*'))
 		(*arr1)[1] = *valg;
-	if (*ptr == '*' && *(ptr + 1) == 'd')
+	if (*ptr == '*' && (*(ptr + 1) == 'd' || *(ptr + 1) == 'i'))
 		(*arr)[1] = ft_itoa((*arr1)[0]);
 	if ((*ptr == '-' || *ptr == '0' || *ptr == '.' ||
 				(*ptr == '*' && *(ptr + 2) != '*') ||
 				(ft_isdigit(ptr) && ptr[2] == '*' && ft_strchr(ptr, '.'))) &&
-			ptr[1] != 'd')
+			ptr[1] != 'd' && ptr[1] != 'i')
 	{
 		if (!(ft_isdigit(ptr) && ptr[2] == '*') &&
 				ft_njma1((char*)(*arr)[0], ptr, valg, (*arr1)[0]))
@@ -87,16 +87,15 @@ int		ft_2njma(const char *ptr, const char *(*arr)[2], int (*arr1)[3],
 				ft_strchr(((*arr)[1] + 1), '.')))
 	{
 		ft_checknum1((*arr)[1], valg, &(*arr1)[2]);
-		if (*ptr == '*' && *(ptr + 1) == '.' && *(ptr + 2) == '*' &&
-				*valg == 0 && (*arr1)[1] >= 0 && (*arr1)[0] >= 0)
-			return (1);
 		if (*valg != 0 || (((*ptr == '*' && *(ptr + 2) != '*') ||
 		(*ptr == '*' && *(ptr + 1) == '.' && *(ptr + 2) == '*' && *valg == 0 &&
 		(*arr1)[1] < 0 && (*arr1)[0] >= 0) ||
 		(*ptr == '0' && *(ptr + 1) == '*' && *(ptr + 2) != '.') ||
 		(*ptr == '.' && *(ptr + 1) == '*' && (*arr1)[0] < 0)) && *valg == 0))
 			ft_putnbr_fd(*valg, 1);
-		if (*ptr == '0' && *valg == 0 && (*arr1)[0] < 0)
+		if ((*ptr == '0' && *valg == 0 && (*arr1)[0] < 0) || (*ptr == '*' &&
+	*(ptr + 1) == '.' && *(ptr + 2) == '*' && *valg == 0 && (*arr1)[1] > 0 &&
+	(*arr1)[0] > 0 && (*arr1)[0] > (*arr1)[1]))
 			ft_putnbr_fd(*valg, 1);
 		while ((*arr1)[2]--)
 			ft_putchar_fd(' ', 1);
@@ -125,7 +124,7 @@ int		ft_njma(const char *ptr, long *valg, va_list *args)
 	*valg = va_arg(*args, int);
 	if (ft_1njma(ptr, &arr, &arr1, valg))
 		return (1);
-	if ((*ptr == '*' && *(ptr + 2) == '*'))
+	if ((*ptr == '*' && *(ptr + 1) == '.' && *(ptr + 2) == '*'))
 	{
 		arr[1] = ft_join(ft_itoa(arr1[0]), ft_itoa((int)arr1[1]), *(ptr + 1));
 		*valg = va_arg(*args, int);

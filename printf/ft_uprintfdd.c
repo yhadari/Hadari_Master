@@ -6,7 +6,7 @@
 /*   By: yhadari <yhadari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 14:45:01 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/20 23:46:19 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/22 04:52:54 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_upoint1(long long *valg, long long nb, long long *n)
 			else
 				ft_putchar_fd('0', 1);
 		}
-		point++;
+		g_point++;
 	}
 }
 

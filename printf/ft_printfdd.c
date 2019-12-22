@@ -6,7 +6,7 @@
 /*   By: yhadari <yhadari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 22:29:25 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/18 15:35:52 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/22 04:48:50 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	ft_point1(long *valg, int *nb, int *i, int *n)
 			else
 				ft_putchar_fd('0', 1);
 		}
-		point++;
+		g_point++;
 	}
 }
 
@@ -125,7 +125,7 @@ int		ft_printfdd(const char *ptr, va_list *args)
 	if (*ptr == '*' || ptr[1] == '*' || (ft_isdigit(ptr) && ptr[2] == '*' &&
 				ft_strchr(ptr, '.')))
 		return (ft_njma(ptr, &valg, args));
-	if (*ptr == 'd')
+	if (*ptr == 'd' || *ptr == 'i')
 		ft_putnbr_fd(valg, 1);
 	return (ft_printfdd1(ptr, &valg, &k));
 }

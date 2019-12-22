@@ -6,13 +6,13 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 15:28:56 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/21 01:05:29 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/22 04:50:56 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static	int		lenum(unsigned int n)
+static int		ulenum(unsigned int n)
 {
 	int i;
 
@@ -28,7 +28,7 @@ static	int		lenum(unsigned int n)
 static	void	revnum(unsigned int *n, unsigned int *ncopy, int *i)
 {
 	*ncopy = *n;
-	*i = lenum(*n);
+	*i = ulenum(*n);
 }
 
 static	int		ft_write(unsigned int n, int fd)
@@ -47,7 +47,7 @@ void			ft_uputnbr_fd(unsigned int n, int fd)
 	if (n == 0)
 	{
 		write(fd, "0", 1);
-		count++;
+		g_count++;
 		return ;
 	}
 	revnum(&n, &ncopy, &i);

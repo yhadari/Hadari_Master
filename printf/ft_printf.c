@@ -6,7 +6,7 @@
 /*   By: yhadari <yhadari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 15:25:56 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/16 22:44:52 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/22 04:49:32 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int		ft_printf(const char *ptr, ...)
 	va_list		args;
 	int			i;
 
-	count = 0;
-	point = 0;
+	g_count = 0;
+	g_point = 0;
 	i = 0;
 	va_start(args, ptr);
 	while (ptr[i] != '\0')
@@ -26,7 +26,7 @@ int		ft_printf(const char *ptr, ...)
 		while (ptr[i] != '%')
 		{
 			if (ptr[i] == '\0')
-				return (count);
+				return (g_count);
 			ft_putchar_fd(ptr[i], 1);
 			i++;
 		}
@@ -34,5 +34,5 @@ int		ft_printf(const char *ptr, ...)
 		i++;
 	}
 	va_end(args);
-	return (count);
+	return (g_count);
 }

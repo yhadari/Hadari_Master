@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 14:51:54 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/21 00:37:05 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/22 04:52:06 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int		ft_uprintfdd1(const char *ptr, long long *valg, long long *k)
 				ft_strchr((ptr + 1), '.')))
 	{
 		ft_uchecknum1(ptr, valg, k);
-		if (*valg == 0 && ptr[0] != '-' && (ptr[0] == '.' || point != 0))
+		if (*valg == 0 && ptr[0] != '-' && (ptr[0] == '.' || g_point != 0))
 			return (1);
 		if (*valg != 0 || (*valg == 0 && ft_strchr(ptr, '.') &&
 					ft_uatoi(ptr) > ft_uatoi(ft_strchr(ptr, '.'))) ||

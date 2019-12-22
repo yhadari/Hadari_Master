@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/15 23:03:55 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/19 23:50:54 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/22 04:50:01 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int		ft_mzero2(char **p, long *num, int *k)
 	if (ft_isdigit(*p) || (**p == '-' && ft_strchr((*p + 1), '.')))
 	{
 		ft_checknum1(*p, num, k);
-		if (*num == 0 && *p[0] != '-' && (*p[0] == '.' || point != 0))
+		if (*num == 0 && *p[0] != '-' && (*p[0] == '.' || g_point != 0))
 			return (1);
 		if (*num != 0 || (*num == 0 && ft_strchr(*p, '.') &&
 					ft_atoi(*p) > ft_atoi(ft_strchr(*p, '.'))) ||

@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 13:45:36 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/20 23:22:13 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/22 04:51:29 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		ft_umzero2(char **p, long long *num, long long *k, const char *ptr)
 		if (ft_strchr(ptr, 'x') || ft_strchr(ptr, 'X'))
 			*p = ft_uconx(*(ptr + ft_xstrlen(ptr)), *p);
 		ft_uchecknum1(*p, num, k);
-		if (*num == 0 && *p[0] != '-' && (*p[0] == '.' || point != 0))
+		if (*num == 0 && *p[0] != '-' && (*p[0] == '.' || g_point != 0))
 			return (1);
 		if (*num != 0 || (*num == 0 && ft_strchr(*p, '.') &&
 					ft_uatoi(*p) > ft_uatoi(ft_strchr(*p, '.'))) ||

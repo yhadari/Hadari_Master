@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 17:33:31 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/20 22:49:03 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/22 01:12:40 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int		ft_pourcentage(const char *ptr, va_list *args)
 		else
 			num = va_arg(*args, int);
 	}
-	else if (ft_atoi(ptr) >= 0)
+	else if (ft_atoi(ptr) >= 0 && *ptr != '.')
 		num = ft_atoi(ptr);
 	ft_pourcentage1(ptr, &i, &num);
 	return (ft_writepo(num, i));

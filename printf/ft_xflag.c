@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 03:45:52 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/21 01:06:24 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/21 17:21:34 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ char	*ft_strev(char *ptr)
 	return (p);
 }
 
-char	*ft_xflag(unsigned int n, int k)
+char	*ft_xflag(size_t n, int k)
 {
-	unsigned int	num;
-	unsigned int	i;
-	char			*ptr;
-	char			*hx;
+	size_t	num;
+	size_t	i;
+	char	*ptr;
+	char	*hx;
 
-	if (k == 0)
+	if (k == 0 || k == 2)
 		hx = "0123456789abcdef";
 	if (k == 1)
 		hx = "0123456789ABCDEF";

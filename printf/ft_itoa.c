@@ -6,13 +6,13 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 14:44:58 by yhadari           #+#    #+#             */
-/*   Updated: 2019/11/20 21:05:21 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/22 03:37:50 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static	int		lenum(int n)
+int				lenum(int n)
 {
 	int i;
 	int j;

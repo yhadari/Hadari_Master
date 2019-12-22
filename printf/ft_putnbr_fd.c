@@ -6,7 +6,7 @@
 /*   By: yhadari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 19:42:51 by yhadari           #+#    #+#             */
-/*   Updated: 2019/12/20 23:57:13 by yhadari          ###   ########.fr       */
+/*   Updated: 2019/12/22 04:47:06 by yhadari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,31 @@ static	int		checknum(long n, int *fd)
 	if (n == 2147483648)
 	{
 		write(*fd, "2147483648", 10);
-		count += 10;
+		g_count += 10;
 		return (1);
 	}
 	if (n == -2147483648)
 	{
 		write(*fd, "-2147483648", 11);
-		count += 11;
+		g_count += 11;
 		return (1);
 	}
 	if (n == 0)
 	{
 		write(*fd, "0", 1);
-		count++;
+		g_count++;
 		return (1);
 	}
 	if (n == 2147483647)
 	{
 		write(*fd, "2147483647", 10);
-		count += 10;
+		g_count += 10;
 		return (1);
 	}
 	return (1);
 }
 
-static	int		lenum(long n)
+static	int		ulenum(long n)
 {
 	int i;
 
@@ -58,11 +58,11 @@ static	void	revnum(long *n, long *ncopy, int *i)
 {
 	if (*n > 0)
 		*ncopy = *n;
-	*i = lenum(*n);
+	*i = ulenum(*n);
 	if (*n < 0)
 	{
 		*ncopy = -*n;
-		*i = lenum(-*n);
+		*i = ulenum(-*n);
 	}
 }
 
@@ -86,7 +86,7 @@ void			ft_putnbr_fd(long n, int fd)
 	if (n < 0)
 	{
 		write(fd, "-", 1);
-		count++;
+		g_count++;
 		n = -n;
 	}
 	while (i-- > 0)
